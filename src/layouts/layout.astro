@@ -1,0 +1,91 @@
+---
+import { Font } from "astro:assets";
+import Bluesky from "@icons/bluesky.svg";
+import Github from "@icons/github.svg";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const year = new Date().getFullYear();
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{Astro.props.title} | Raroh73</title>
+    <meta name="author" content="Raroh73" />
+    <meta name="description" content={Astro.props.description} />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Font cssVariable="--font-inter" preload />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">Home</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <div>
+        <a href="https://bsky.app/profile/raroh73.com/" rel="external" target="_blank">
+          <Bluesky fill="currentColor" height="24"  width="24" />
+        </a>
+        <a href="https://github.com/Raroh73/" rel="external" target="_blank">
+          <Github fill="currentColor" height="24" width="24" />
+        </a>
+      </div>
+      <p>© {year} Raroh73</p>
+    </footer>
+  </body>
+</html>
+<style>
+  :root {
+    --background: #dddddd;
+    --text: #222222;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: var(--font-inter);
+    margin: auto;
+    max-width: 720px;
+  }
+  header {
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 200px);
+  }
+  footer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: center;
+  }
+  a {
+    color: currentColor;
+    text-decoration: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #222222;
+      --text: #dddddd;
+    }
+  }
+  @view-transition {
+    navigation: auto;
+  }
+</style>

@@ -1,0 +1,19 @@
+{
+  "name": "Nodejs",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/raroh73/devcontainer-features/update:latest": {},
+    "ghcr.io/raroh73/devcontainer-features/git:latest": {},
+    "ghcr.io/raroh73/devcontainer-features/zsh:latest": {},
+    "ghcr.io/raroh73/devcontainer-features/nodejs:latest": {}
+  },
+  "remoteUser": "dev",
+  "customizations": {
+    "vscode": {
+      "extensions": ["astro-build.astro-vscode", "biomejs.biome"]
+    }
+  },
+  "forwardPorts": [4321]
+}

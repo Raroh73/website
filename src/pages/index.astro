@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+import avatar from "@images/avatar.png";
+import Layout from "@layouts/layout.astro";
+---
+
+<Layout
+  title="Home"
+  description="Personal website about everything and nothing. Coding, gaming, memes and other boring things."
+>
+  <div>
+    <Image
+      src={avatar}
+      alt="avatar"
+      format="avif"
+      priority={true}
+      width="128"
+    />
+    <h1>Raroh73</h1>
+  </div>
+</Layout>
+<style>
+  div {
+    margin: auto;
+    text-align: center;
+  }
+  img {
+    border-radius: 50%;
+  }
+</style>

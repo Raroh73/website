@@ -1,0 +1,24 @@
+{
+  "features": {
+    "ghcr.io/raroh73/devcontainer-features/git:latest": {
+      "version": "0.0.5",
+      "resolved": "ghcr.io/raroh73/devcontainer-features/git@sha256:0232e62a39e0f6c1c24bfecd10219d6ab7677fa85ff23511d7199a0392a1a5b4",
+      "integrity": "sha256:0232e62a39e0f6c1c24bfecd10219d6ab7677fa85ff23511d7199a0392a1a5b4"
+    },
+    "ghcr.io/raroh73/devcontainer-features/nodejs:latest": {
+      "version": "0.0.7",
+      "resolved": "ghcr.io/raroh73/devcontainer-features/nodejs@sha256:4f110c4019ef8f0d6c8d00bcce92e4ee00ae6c75d7c05de35a9704b5c6e47562",
+      "integrity": "sha256:4f110c4019ef8f0d6c8d00bcce92e4ee00ae6c75d7c05de35a9704b5c6e47562"
+    },
+    "ghcr.io/raroh73/devcontainer-features/update:latest": {
+      "version": "0.0.4",
+      "resolved": "ghcr.io/raroh73/devcontainer-features/update@sha256:ac74ced712e2e61823b1c519fa3a8d38d0b54501d59e16e5a16be1759f38eae2",
+      "integrity": "sha256:ac74ced712e2e61823b1c519fa3a8d38d0b54501d59e16e5a16be1759f38eae2"
+    },
+    "ghcr.io/raroh73/devcontainer-features/zsh:latest": {
+      "version": "0.0.11",
+      "resolved": "ghcr.io/raroh73/devcontainer-features/zsh@sha256:50555c89f80fd61c0923888f03992b81e5bd6f157da5590ad8b37a8b53f06317",
+      "integrity": "sha256:50555c89f80fd61c0923888f03992b81e5bd6f157da5590ad8b37a8b53f06317"
+    }
+  }
+}
