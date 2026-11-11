@@ -5,6 +5,17 @@
   "author": "Raroh73",
   "description": "Personal Website.",
   "homepage": "https://raroh73.com",
+  "engines": {
+    "node": ">=v22.23.4"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node"
+    },
+    "packageManager": {
+      "name": "npm"
+    }
+  },
   "scripts": {
     "astro:build": "astro build",
     "astro:dev": "astro dev --host",
