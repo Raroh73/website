@@ -1,7 +1,7 @@
 FROM registry.access.redhat.com/hi/nodejs:latest-builder AS deps
 WORKDIR /app
 COPY package.json package-lock.json .
-RUN npm ci --omit=dev
+RUN npm ci --omit dev
 
 FROM registry.access.redhat.com/hi/nodejs:latest-builder AS build
 WORKDIR /app
