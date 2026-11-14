@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@astrojs/node": "11.1.12",
-    "astro": "7.4.8"
+    "astro": "7.4.10"
   },
   "devDependencies": {
     "@astrojs/sitemap": "3.7.4",
