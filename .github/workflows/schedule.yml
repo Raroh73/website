@@ -3,7 +3,34 @@ on:
   schedule:
     - cron: "0 0 * * 0"
 jobs:
-  refresh:
+  deps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set Up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      - name: Update Dependencies
+        run: npm update
+      - name: Run Biome Checks
+        run: npm run biome:ci
+      - name: Push Updates
+        run: |
+          set -e
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit!"
+          else
+            git commit -m "Automated dependencies update"
+            git push
+          fi
+  image:
+    needs: deps
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
