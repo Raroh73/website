@@ -1,5 +1,7 @@
-.astro
+.astro/
+.devcontainer/
+.github/
 dist/
 node_modules/
 playwright-report/
-test-results
+test-results/
