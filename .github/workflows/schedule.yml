@@ -62,3 +62,5 @@ jobs:
         with:
           push: true
           tags: ghcr.io/raroh73/website:latest
+          cache-from: type=gha
+          cache-to: type=gha, mode=max
