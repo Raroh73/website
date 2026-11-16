@@ -13,7 +13,11 @@
   "remoteUser": "dev",
   "customizations": {
     "vscode": {
-      "extensions": ["astro-build.astro-vscode", "biomejs.biome"]
+      "extensions": [
+        "astro-build.astro-vscode",
+        "biomejs.biome",
+        "ms-playwright.playwright"
+      ]
     }
   },
   "forwardPorts": [4321]
