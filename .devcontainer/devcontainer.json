@@ -4,10 +4,11 @@
     "dockerfile": "Dockerfile"
   },
   "features": {
-    "ghcr.io/raroh73/devcontainer-features/update:latest": {},
     "ghcr.io/raroh73/devcontainer-features/git:latest": {},
-    "ghcr.io/raroh73/devcontainer-features/zsh:latest": {},
-    "ghcr.io/raroh73/devcontainer-features/nodejs:latest": {}
+    "ghcr.io/raroh73/devcontainer-features/nodejs:latest": {},
+    "ghcr.io/raroh73/devcontainer-features/sudo:latest": {},
+    "ghcr.io/raroh73/devcontainer-features/update:latest": {},
+    "ghcr.io/raroh73/devcontainer-features/zsh:latest": {}
   },
   "remoteUser": "dev",
   "customizations": {

@@ -1,5 +1,3 @@
-FROM quay.io/fedora/fedora:latest
+FROM docker.io/library/debian:latest
 
-RUN echo "install_weak_deps=false" >> /etc/dnf/dnf.conf
-
-RUN useradd -m dev
+RUN useradd --create-home --shell /bin/bash dev
