@@ -10,7 +10,7 @@ RUN npm ci
 COPY . .
 RUN npm run astro:build
 
-FROM registry.access.redhat.com/hi/nodejs:latest
+FROM registry.access.redhat.com/hi/nodejs:latest AS app
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=deps /app/node_modules node_modules
