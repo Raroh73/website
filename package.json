@@ -20,9 +20,10 @@
     "astro:build": "astro build",
     "astro:dev": "astro dev --host",
     "astro:preview": "astro preview",
-    "biome:ci": "biome ci",
-    "biome:check": "biome check --write",
+    "biome:format": "biome format --write",
+    "biome:lint": "biome lint --fix",
     "biome:migrate": "biome migrate",
+    "biome:test": "biome ci",
     "playwright:install": "playwright install --with-deps",
     "playwright:test": "playwright test"
   },

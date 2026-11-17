@@ -18,7 +18,7 @@ jobs:
       - name: Build Website
         run: npm run astro:build
       - name: Run Biome Tests
-        run: npm run biome:ci
+        run: npm run biome:test
       - name: Install Playwright Browsers
         run: npm run playwright:install
       - name: Run Playwright Tests
