@@ -1,17 +1,15 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("index", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto("/");
-  });
-
-  test("title", async ({ page }) => {
-    await expect(page).toHaveTitle("Home | Raroh73");
-  });
-
-  test("heading", async ({ page }) => {
-    await expect(
+test("index", async ({ page }) => {
+  await page.goto("/");
+  await expect.soft(page, "Expect URL to be '/'").toHaveURL("/");
+  await expect
+    .soft(page, "Expect title to be 'Home | Raroh73'")
+    .toHaveTitle("Home | Raroh73");
+  await expect
+    .soft(
       page.getByRole("heading", { level: 1, name: "Raroh73" }),
-    ).toBeVisible();
-  });
+      "Expect heading to be 'Raroh73'",
+    )
+    .toBeVisible();
 });
