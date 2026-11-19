@@ -15,3 +15,29 @@ export const svg = async () => {
 
   return svg;
 };
+
+export const ico = async () => {
+  const png = await sharp(Buffer.from(favicon), { density: 384 })
+    .resize(32, 32)
+    .png()
+    .toBuffer();
+
+  const header = Buffer.alloc(6); // ICONDIR
+  header.writeUInt16LE(0, 0); // reserved
+  header.writeUInt16LE(1, 2); // image type
+  header.writeUInt16LE(1, 4); // number of images
+
+  const entry = Buffer.alloc(16); // ICONDIRENTRY
+  entry.writeUInt8(32, 0); // width
+  entry.writeUInt8(32, 1); // height
+  entry.writeUInt8(0, 2); // palette colors
+  entry.writeUInt8(0, 3); // reserved
+  entry.writeUInt16LE(1, 4); // color planes
+  entry.writeUInt16LE(32, 6); // bits per pixel
+  entry.writeUInt32LE(png.length, 8); // image data size
+  entry.writeUInt32LE(6 + 16, 12); // image data offset
+
+  const ico = Buffer.concat([header, entry, png]);
+
+  return ico;
+};
