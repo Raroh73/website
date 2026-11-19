@@ -1,12 +1,24 @@
 import sharp from "sharp";
 import { optimize } from "svgo";
 
-const favicon = `<svg xmlns="http://www.w3.org/2000/svg" id="svg3" width="1000" height="1000">
+const favicon = `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
   <title>Favicon</title>
-  <style id="style1">text{fill:#222}@media (prefers-color-scheme:dark){text{fill:#ddd}}</style>
-  <text id="text1" x="-58.108" y="1864.84" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:868.647px;font-family:monospace" transform="scale(1.87714 .53273)">3</text>
-  <text id="text2" x="-60.115" y="922.428" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:885.729px;font-family:monospace" transform="scale(1.84486 .54205)">7</text>
-  <text id="text3" x="-112.097" y="1170.352" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:1605.41px;font-family:monospace" transform="scale(1.17035 .85444)">R</text>
+  <style>
+    .bg { fill: #222; }
+    .fg {
+      fill: none;
+      stroke: #ddd;
+      stroke-width: 130;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #ddd; }
+      .fg { stroke: #222; }
+    }
+  </style>
+  <rect class="bg" width="1024" height="1024" rx="224" ry="224"/>
+  <path class="fg" d="M340 780V244H540a150 150 0 0 1 0 300H340M520 544L670 780"/>
 </svg>
 `;
 
