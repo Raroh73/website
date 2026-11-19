@@ -22,13 +22,40 @@ const favicon = `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="10
 </svg>
 `;
 
+/**
+ * Generates an optimized SVG version of the favicon.
+ *
+ * The source favicon markup is passed through SVGO to strip unnecessary
+ * metadata and reduce file size.
+ *
+ * @returns A promise resolving to the optimized SVG markup as a string.
+ */
 export const svg = async () => {
   return optimize(favicon).data;
 };
 
+/**
+ * Generates a multi-resolution `.ico` file from the favicon SVG.
+ *
+ * The SVG is rasterized with Sharp into PNG images at 16×16, 32×32 and
+ * 48×48 pixels. The PNGs are then packed into a single ICO container by
+ * hand, using PNG-compressed image entries (supported by Windows Vista and
+ * later, and all modern browsers).
+ *
+ * The resulting file layout is:
+ * 1. `ICONDIR` header (6 bytes)
+ * 2. One `ICONDIRENTRY` per image (16 bytes each)
+ * 3. The raw PNG data for each image, in the same order as the entries
+ *
+ * @returns A promise resolving to a `Buffer` containing the binary `.ico` file.
+ *
+ * @see {@link https://en.wikipedia.org/wiki/ICO_(file_format) | ICO file format}
+ */
 export const ico = async () => {
   const sizes = [16, 32, 48] as const;
 
+  // Rasterize the SVG at each target size. A high density is used so the
+  // vector source is rendered crisply before being downscaled.
   const pngs = await Promise.all(
     sizes.map(async (size) => ({
       size,
