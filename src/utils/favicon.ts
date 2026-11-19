@@ -29,27 +29,41 @@ export const svg = async () => {
 };
 
 export const ico = async () => {
-  const png = await sharp(Buffer.from(favicon), { density: 384 })
-    .resize(32, 32)
-    .png()
-    .toBuffer();
+  const sizes = [16, 32, 48] as const;
+
+  const pngs = await Promise.all(
+    sizes.map(async (size) => ({
+      size,
+      data: await sharp(Buffer.from(favicon), { density: 384 })
+        .resize(size, size)
+        .png()
+        .toBuffer(),
+    })),
+  );
 
   const header = Buffer.alloc(6); // ICONDIR
   header.writeUInt16LE(0, 0); // reserved
-  header.writeUInt16LE(1, 2); // image type
-  header.writeUInt16LE(1, 4); // number of images
+  header.writeUInt16LE(1, 2); // image type (1 = icon)
+  header.writeUInt16LE(pngs.length, 4); // number of images
 
-  const entry = Buffer.alloc(16); // ICONDIRENTRY
-  entry.writeUInt8(32, 0); // width
-  entry.writeUInt8(32, 1); // height
-  entry.writeUInt8(0, 2); // palette colors
-  entry.writeUInt8(0, 3); // reserved
-  entry.writeUInt16LE(1, 4); // color planes
-  entry.writeUInt16LE(32, 6); // bits per pixel
-  entry.writeUInt32LE(png.length, 8); // image data size
-  entry.writeUInt32LE(6 + 16, 12); // image data offset
+  // Image data starts after the header and all directory entries
+  let offset = header.length + pngs.length * 16;
 
-  const ico = Buffer.concat([header, entry, png]);
+  const entries = pngs.map(({ size, data }) => {
+    const entry = Buffer.alloc(16); // ICONDIRENTRY
+    entry.writeUInt8(size, 0); // width
+    entry.writeUInt8(size, 1); // height
+    entry.writeUInt8(0, 2); // palette colors
+    entry.writeUInt8(0, 3); // reserved
+    entry.writeUInt16LE(1, 4); // color planes
+    entry.writeUInt16LE(32, 6); // bits per pixel
+    entry.writeUInt32LE(data.length, 8); // image data size
+    entry.writeUInt32LE(offset, 12); // image data offset
 
-  return ico;
+    offset += data.length;
+
+    return entry;
+  });
+
+  return Buffer.concat([header, ...entries, ...pngs.map(({ data }) => data)]);
 };
