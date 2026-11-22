@@ -12,10 +12,6 @@ const favicon = `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="10
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    @media (prefers-color-scheme: dark) {
-      .bg { fill: #ddd; }
-      .fg { stroke: #222; }
-    }
   </style>
   <rect class="bg" width="1024" height="1024" rx="224" ry="224"/>
   <path class="fg" d="M340 780V244H540a150 150 0 0 1 0 300H340M520 544L670 780"/>
@@ -68,8 +64,8 @@ export const ico = async () => {
 
   const header = Buffer.alloc(6); // ICONDIR
   header.writeUInt16LE(0, 0); // reserved
-  header.writeUInt16LE(1, 2); // image type (1 = icon)
-  header.writeUInt16LE(pngs.length, 4); // number of images
+  header.writeUInt16LE(1, 2); // type: icon
+  header.writeUInt16LE(pngs.length, 4); // image count
 
   // Image data starts after the header and all directory entries
   let offset = header.length + pngs.length * 16;
