@@ -5,7 +5,13 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   globalTimeout: 60 * 60 * 1000,
-  reporter: "html",
+  reporter: process.env.CI
+    ? [
+        ["html", { open: "never" }],
+        ["github"],
+        ["./reporters/playwright/summary-reporter.ts"],
+      ]
+    : [["html"]],
   retries: process.env.CI ? 1 : 0,
   projects: [
     {
