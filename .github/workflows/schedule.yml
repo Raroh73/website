@@ -18,6 +18,14 @@ jobs:
         run: npm run astro:build
       - name: Run Biome Tests
         run: npm run biome:test
+      - name: Run Vitest Tests
+        run: npm run vitest:test
+      - name: Upload Vitest Coverage
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 30
       - name: Install Playwright Browsers
         run: npm run playwright:install
       - name: Run Playwright Tests
