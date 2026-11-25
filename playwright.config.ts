@@ -8,7 +8,6 @@ export default defineConfig({
   reporter: process.env.CI
     ? [
         ["html", { open: "never" }],
-        ["github"],
         ["./reporters/playwright/summary-reporter.ts"],
       ]
     : [["html"]],
