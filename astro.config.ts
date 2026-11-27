@@ -13,7 +13,7 @@ export default defineConfig({
       cssVariable: "--font-inter",
       provider: fontProviders.npm(),
       styles: ["normal"],
-      weights: [400, 700],
+      weights: ["400", "700"],
     },
   ],
   integrations: [sitemap()],
