@@ -18,8 +18,8 @@ jobs:
         run: npm run astro:build
       - name: Run Typescript Checks
         run: npm run typescript:check
-      - name: Run Biome Tests
-        run: npm run biome:test
+      - name: Run Biome Checks
+        run: npm run biome:check
       - name: Run Vitest Tests
         run: npm run vitest:test
       - name: Upload Vitest Coverage
