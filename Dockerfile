@@ -1,10 +1,12 @@
 FROM registry.access.redhat.com/hi/nodejs:latest-builder AS deps
 WORKDIR /app
+ENV NODE_ENV=production
 COPY package.json package-lock.json .
-RUN npm ci --omit dev
+RUN npm ci
 
 FROM registry.access.redhat.com/hi/nodejs:latest-builder AS build
 WORKDIR /app
+ENV NODE_ENV=development
 COPY package.json package-lock.json .
 RUN npm ci
 COPY . .
