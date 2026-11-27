@@ -17,6 +17,8 @@ jobs:
         run: npm ci
       - name: Build Website
         run: npm run astro:build
+      - name: Run Typescript Checks
+        run: npm run typescript:check
       - name: Run Biome Tests
         run: npm run biome:test
       - name: Run Vitest Tests

@@ -27,7 +27,8 @@
     "playwright:install": "playwright install --with-deps",
     "playwright:test": "playwright test",
     "vitest:unit": "vitest run --project unit",
-    "vitest:test": "vitest run"
+    "vitest:test": "vitest run",
+    "typescript:check": "tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/node": "11.1.14",
